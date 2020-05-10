@@ -14,7 +14,7 @@ Tile {
 	Rectangle {
      		id: simplebutton
      		color: "grey"
-     		width: isNxt ? 285 : 220; height: isNxt ? 25 : 20
+     		width: isNxt ? 285 : 225; height: isNxt ? 25 : 20
 		
 		radius: 4
      		Text{
@@ -43,7 +43,7 @@ Tile {
 	Rectangle {
      		id: simplebutton2
      		color: "grey"
-     		width: isNxt ? 285 : 220; height: isNxt ? 25 : 20
+     		width: isNxt ? 285 : 225; height: isNxt ? 25 : 20
 		radius: 4
      		Text{
          		id: buttonLabel2
