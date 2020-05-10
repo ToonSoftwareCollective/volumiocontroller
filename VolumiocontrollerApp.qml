@@ -29,7 +29,7 @@ App {
 	property bool actMP3 : false
 	property bool actPause : false
 
-	property string volumioURL : "http://192.168.10.31"
+	property string volumioURL : "http://volumio.local"
 
 	property string radioStation1 : "NL"
 	property string radioStation2 : "538"
