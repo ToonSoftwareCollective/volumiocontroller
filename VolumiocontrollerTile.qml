@@ -13,8 +13,8 @@ Tile {
 
 	Rectangle {
      		id: simplebutton
-     		color: "grey"
-     		width: isNxt ? 285 : 225; height: isNxt ? 25 : 20
+     		color: "transparent"
+     		width: isNxt ? 285 : 220; height: isNxt ? 25 : 20
 		
 		radius: 4
      		Text{
@@ -22,49 +22,18 @@ Tile {
          		anchors.centerIn: parent
 			font.pixelSize:  isNxt ? 20 : 16
 			font.family: qfont.regular.name
-         		text: "Mute"
+			text: app.actRadio ? app.actualStation : "Volumio"
+			font.bold: true
+			color: !dimState? "black" : "white"
 		}
-
 		anchors {
 			top: parent.top
 			topMargin: 2
 			horizontalCenter: parent.horizontalCenter	 		
 		}
-
-    		MouseArea{
-         		id: buttonMouseArea
-         		anchors.fill: parent 
-         		onClicked: {app.simpleSynchronous(app.volumioURL + "/api/v1/commands/?cmd=mute");}
-     		}
-    		visible: (app.enableSleep||!dimState) && app.actualMute
-
+    		visible:  !dimState
 	}
 
-	Rectangle {
-     		id: simplebutton2
-     		color: "grey"
-     		width: isNxt ? 285 : 225; height: isNxt ? 25 : 20
-		radius: 4
-     		Text{
-         		id: buttonLabel2
-         		anchors.centerIn: parent
-			font.pixelSize:  isNxt ? 20 : 16
-			font.family: qfont.regular.name
-         		text: "Unmute"
-     		}
-		anchors {
-			top: parent.top
-			topMargin: 2
-			left: simplebutton.left
-		}
-
-    		MouseArea{
-         		id: buttonMouseArea2
-         		anchors.fill: parent 
-         		onClicked: {app.simpleSynchronous(app.volumioURL + "/api/v1/commands/?cmd=volume&volume=unmute");}
-     		}
-    		visible: (app.enableSleep||!dimState) && !app.actualMute
-	}
 
 /////////////////////////radio station sessions start here
 
@@ -78,7 +47,7 @@ Tile {
 			anchors.centerIn: parent
 			font.pixelSize:  isNxt ? 20 : 16
 			font.family: qfont.regular.name
-         	text: app.radioStation1
+         	        text: app.radioStation1
      	}
 		anchors {
 			top: simplebutton.bottom
@@ -318,7 +287,7 @@ Tile {
 			color: !dimState? "black" : "white"
      		}
 		anchors {
-			top: simplebutton2.bottom
+			top: simplebutton.bottom
 			topMargin: 2
 			left: simplebutton.left		
 		}
@@ -390,9 +359,9 @@ Tile {
 			bottomMargin: 5
 		}
 
-		iconSource: !app.actPause ? "qrc:/tsc/play.png" :  "qrc:/tsc/pause.png"
+		iconSource: !app.actPause ? "qrc:/tsc/pause.png" :  "qrc:/tsc/play.png"
 		onClicked: {
-			app.simpleSynchronous(app.volumioURL + "/api/v1/commands/?cmd=toggle");
+			app.actPause ? app.simpleSynchronous(app.volumioURL + "/api/v1/commands/?cmd=play") : app.simpleSynchronous(app.volumioURL + "/api/v1/commands/?cmd=pause")
 		}
 		visible: !dimState	
 	}

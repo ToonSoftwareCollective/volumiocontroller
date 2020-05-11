@@ -213,7 +213,7 @@ Screen {
 		}
 
 		onClicked: {
-			qkeyboard.open("Radiostation 4 Name (3 Letter)", radioStation4.inputText, saveradioStation3)
+			qkeyboard.open("Radiostation 4 Name (3 Letter)", radioStation4.inputText, saveradioStation4)
 		}
 	}
 

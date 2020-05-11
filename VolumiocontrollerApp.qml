@@ -19,8 +19,8 @@ App {
 
 	property string actualArtist
 	property string actualTitle
+	property string actualStation
 
-	property bool actualMute : true
 	property bool actualArtistLong : false
 	property bool actualTitleLong : false
 	property bool enableSleep : false
@@ -29,7 +29,7 @@ App {
 	property bool actMP3 : false
 	property bool actPause : false
 
-	property string volumioURL : "http://volumio.local"
+	property string volumioURL : "http://192.168.10.31"
 
 	property string radioStation1 : "NL"
 	property string radioStation2 : "538"
@@ -88,18 +88,20 @@ App {
 						var JsonString4 = xmlhttp4.responseText;
         					var JsonObject4= JSON.parse(JsonString4);
 
-						actualMute = JsonObject4.mute;
 						actualTitle = JsonObject4.title;
 
 						if (JsonObject4.trackType == "webradio") {
 							actRadio = true;
+							actualStation = JsonObject4.artist;
 						} else {
 							actRadio = false;
+							actualStation = "";
 						}
 
 						if (JsonObject4.trackType == "mp3") {
 							actMP3 = true;
 							actualArtist = JsonObject4.artist;
+							actStation = ""
 						}else{
 							actMP3 = false;
 							actualArtist = "";
@@ -121,6 +123,11 @@ App {
 							actualArtistLong = true;
 						}else{
 							actualArtistLong = false;
+						}
+
+						if (actualStation.length > 27) {
+							actualStation = actualStation.substring(0,24);
+							actualStation += "..."	
 						}
 				}
 			}
